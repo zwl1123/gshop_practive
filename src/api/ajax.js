@@ -9,7 +9,7 @@ export default function ajax(url='',data={},type='GET') {
         dataStr += key + '=' + data[key] + '&'
       })
       if(dataStr!==''){
-        dataStr.substring(0,data.lastIndexOf('&'))
+        dataStr.substring(0,dataStr.lastIndexOf('&'))
         url = url + '?' +dataStr
       }
       promise = axios.get(url)
@@ -18,11 +18,15 @@ export default function ajax(url='',data={},type='GET') {
     }
     promise.then(response=>{
       resolve(response.data)
+        .catch(function(result) {
+          console.log(result);
+        })
     })
-      .catch(error=>{
-        reject(error)
-      })
 
 
+
+  })
+    .catch(function(result) {
+    console.log(result);
   })
 }
